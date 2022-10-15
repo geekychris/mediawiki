@@ -1,0 +1,20 @@
+#apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: wiki
+
+resources:
+- db-deployment.yaml
+- db-service.yaml
+- env-configmap.yaml
+- kustomization.yaml
+- mediawiki-deployment.yaml
+- mediawiki-service.yaml
+- secret.yaml
+- wikinetwork-networkpolicy.yaml
+- wikidb_persist.yaml
+- wikidb_pv_claim.yaml
+- wiki_persist.yaml
+- wiki_pv_claim.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1

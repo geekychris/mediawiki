@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        network/wikinetwork: "true"
+        service: db
+    spec:
+      volumes:
+        - name: wikidb-pv-storage
+          persistentVolumeClaim:
+            claimName: wikidb-pv-claim
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: env
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: MYSQL_ROOT_PASSWORD
+        image: supreetraut/mariadb-wiki
+        imagePullPolicy: Always
+        name: db
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: "/var/lib/mysql/"
+          name: wikidb-pv-storage  
+      restartPolicy: Always
+      serviceAccountName: ""
