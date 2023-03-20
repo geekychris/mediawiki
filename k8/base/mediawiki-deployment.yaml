@@ -15,7 +15,12 @@ spec:
         network/wikinetwork: "true"
         service: mediawiki
     spec:
+      securityContext:
+        fsGroup: 48 
       volumes:
+        - name: wiki-pv-storage
+          persistentVolumeClaim:
+            claimName: wiki-pv-claim
         - name: "wiki-config"
           configMap:
             name: "wiki-config"
@@ -26,6 +31,8 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
+            - mountPath: "/opt/rh/httpd24/root/var/www/html/mediawiki/images"
+              name: wiki-pv-storage
             - mountPath: "/opt/rh/httpd24/root/var/www/html/mediawiki/LocalSettings.php"
               name: "wiki-config"
               subPath: "LocalSettings.php"

@@ -140,6 +140,10 @@ $wgGroupPermissions['*']['createaccount'] = false;
 ## names, ie 'vector', 'monobook':
 $wgDefaultSkin = "vector";
 
+
+
+$MEDIAWIKI_FILE_EXTENSIONS="png, gif, jpg, jpeg, doc, xls, mpp, pdf, ppt, tiff, bmp, docx, xlsx, pptx, ps, odt, ods, odp, odg"
+
 # Enabled skins.
 # The following skins were automatically enabled:
 wfLoadSkin( 'MonoBook' );

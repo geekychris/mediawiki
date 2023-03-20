@@ -1,2 +1,2 @@
 
-kubectl create configmap wiki-config --namespace=wiki --from-file LocalSettings.php
+k create configmap wiki-config --namespace=wiki --from-file LocalSettings.php
