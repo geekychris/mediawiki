@@ -1,0 +1,2 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `wikidatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `Passw0rd`;
